@@ -6,14 +6,20 @@ const UserServices = require('../services/user.service');
 exports.register = async (req, res, next) => {
   try {
     console.log("---req body---", req.body);
-    const { email, password, name } = req.body;
+    const { email, password, name, phone, image } = req.body;
     const duplicate = await UserServices.getUserByEmail(email);
     if (duplicate) {
       throw new Error(`UserName ${email}, Already Registered`)
     }
-    const response = await UserServices.registerUser(email, password, name);
 
-    res.json({ status: true, success: 'User registered successfully' });
+    const response = await UserServices.registerUser(email, password, name, phone, image);
+
+    let tokenData;
+    tokenData = { _id: response._id, email: email };
+
+
+    const token = await UserServices.generateAccessToken(tokenData, "secret", "1h")
+    res.json({ status: true, message: 'User registered successfully', token: token, id: response._id });
 
 
   } catch (err) {
@@ -104,8 +110,8 @@ exports.createUser = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    const { name, email } = req.body;
-    const user = await User.findByIdAndUpdate(req.params.id, { name, email }, { new: true });
+    const { name, email, image } = req.body;
+    const user = await User.findByIdAndUpdate(req.params.id, { name, email, image }, { new: true });
     if (!user) {
       res.status(404).json({ error: 'User not found' });
     } else {

@@ -8,13 +8,15 @@ router.post("/register", userController.register);
 router.post("/login", userController.login);
 
 
-// module.exports = router;
+
+//Get UserDetail
+// router.get('/user', userController.getAllUsers);
 
 
 // Get all users
 router.get('/users', userController.getAllUsers);
 
-// Get user by ID
+// Get user by ID   nfsha b3d li njib current user
 router.get('/users/:id', userController.getUserById);
 
 // Create new user
