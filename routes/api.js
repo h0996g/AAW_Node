@@ -1,13 +1,16 @@
 
 const express = require('express');
+
 const userController = require('../controllers/users');
 const router = express.Router();
+
 
 
 router.post("/register", userController.register);
 
 router.post("/login", userController.login);
 
+router.get('/testJava', userController.testJava);
 
 
 //Get UserDetail
@@ -15,6 +18,16 @@ router.post("/login", userController.login);
 
 
 // Get all users
+// Routes
+/**
+ * @swagger
+ * /users:
+ *  get:
+ *    description: Use to request all users
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
 router.get('/users', userController.getAllUsers);
 
 // Get user by ID   nfsha b3d li njib current user

@@ -15,7 +15,9 @@
         "jsonwebtoken": "^9.0.0",
         "mongoose": "^6.10.5",
         "nodemon": "^2.0.22",
-        "pcrypt": "^0.2.0"
+        "pcrypt": "^0.2.0",
+        "swagger-jsdoc": "^6.2.8",
+        "swagger-ui-express": "^4.6.3"
     },
     "engines": {
         "node": "16.18.0"

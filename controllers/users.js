@@ -77,7 +77,11 @@ exports.login = async (req, res, next) => {
 
 
 
+exports.testJava = async (req, res) => {
+  var data = [{ 'name': "product1", "quantity": "10" }, { 'name': "product2", "quantity": "30", 'name': "product3", "quantity": "30" }, { 'name': "product4", "quantity": "40" }, { 'name': "product5", "quantity": "60" }];
 
+  res.json({ status: true, message: 'get List test ', data: data });
+};
 
 exports.getAllUsers = async (req, res) => {
   const users = await User.find();
